@@ -1,0 +1,122 @@
+.heading{display:block; width:100%; margin-top: 5px;}
+.form-control{width:80%}
+#signup-form{ width: 500px;padding-top: 5px;    margin: 0 auto;}
+.leftimage{    display: inline;}
+.window {background-image:url("bg.jpg");background-repeat: no-repeat; background-position: center center;   }
+.feedwindow{background-size:cover;  }
+.navbar-default {background: rgba(0,0,0,0.4); border-color: transparent;}
+.navbar-default .navbar-nav>li>a{color:#fff;font-size:16px}
+.navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-brand:hover{color:rgb(40,56,120)}
+.navbar-default .navbar-brand{    color: rgb(40,56,120);font-size: 32px;}
+#circlemenu{width: 450px; margin: 0 auto; height: 450px;  background:rgba(40,56,120,0.9);  border-radius: 250px;text-align: center; padding-top:6%}
+#circlemenu span p{color:white;font-size: 32px;line-height:2;}
+#circlemenu span p button{background:white}	#circlemenu span p button a{color:rgb(40,56,120);text-decoration:none;}
+#rectmenu{width: 650px; margin: 0 auto; height: 450px;  background:rgba(40,56,120,0.9);  border-radius:50px; padding-left:25px;}
+.feedrect{height:600px !important;}
+form p{color:white; font-size:16px;}
+form h3{color:white;}
+cf-chat-response.robot text>p{color:white; background:#5774b8;}
+cf-chat-response.user text>p {color:white; background:#27ad8e;}
+.conversational-form--enable-animation cf-input input, .conversational-form--enable-animation cf-input textarea{color:black; background:#27ad8e}
+.robot thumb{background-image: url("chatbot.png");}
+#guestlink,#guestlink:hover{color:white; font-style:italic; font-size:20px;}
+form p span{font-size:18px;}
+body {
+    margin: 0;
+    background-color: #5774b8;
+}
+
+.sandbox-correct-pronounciation {
+  padding: 10em 0 5em 0;
+}
+
+.heading-correct-pronounciation {
+  margin: auto;
+  text-align: center;
+  position: relative;
+}
+#bell{float:right;}
+h1 {
+  color: #fff;
+  font-family: 'Cardo', serif;
+  font-size: 1.5em;
+  font-weight: normal;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  line-height: 2.2em;
+}
+
+em{  font-size: 3.5em;}
+
+.bottom {font-size: 1.5em;letter-spacing: 0.07em;font-size: 1em; display: block;}
+#roundimg img{border-radius:50%}
+#roundimg p{font-family: 'EB Garamond', serif;font-size: 2em; color:white;letter-spacing: 0.1em;display: block;font-style:normal;padding-top: 0.1em;text-shadow: 0.07em 0.07em 0 rgba(0, 0, 0, 0.3);margin-left: 50px;}
+.bg-4 { 
+  background-color: #2f2f2f; /* Black Gray */
+  color: #fff;    padding: 15px 0px 15px 0px; 
+}
+
+@media screen and (max-width: 480px) {
+   #circlemenu{width: 300px; margin: 0 auto; height: 300px; }
+   #signup-form{ width: auto;}
+   em{font-size:1.8em;}
+   #circlemenu span p { margin:0px;}
+   #circlemenu{    padding-top: 20%;}
+   .chat{    position: absolute;
+    right: 50px !important;
+    top: unset !important;
+}
+}
+@media (min-width: 481px) and (max-width: 580px) {
+em{font-size:2em;}}
+@media screen and (max-width: 700px) {
+#rectmenu{width:auto}}
+
+.form-control{
+	display: block;
+	width: 100%;
+	border: 0;
+	padding: 10px 5px;
+    background: white no-repeat;
+	background-image: linear-gradient(to bottom, #1abc9c, #1abc9c), linear-gradient(to bottom, silver, silver);
+	background-size: 0 2px, 100% 1px;
+	background-position: 50% 100%, 50% 100%;
+    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+
+}
+
+.form-control:focus{
+	background-size: 100% 2px, 100% 1px;
+	outline: none;
+}
+
+textarea.expandable {
+  height:40px;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition:  all 0.5s ease-in-out;
+}
+
+textarea.expandable:focus {
+  height:80px;      
+  -webkit-transition: all 0.8s ease-in-out;
+   transition:  all 0.8s ease-in-out;
+}
+
+.form-group label{color:white;}
+
+.star-rating{
+  line-height:32px;
+  font-size:2.25em;
+  transition: all 5s ease-in-out;
+}
+.star-rating .fa-star-o{color:#4AFFFC;}
+.star-rating .fa-star{color: #4AFFFC;}
+.fa:hover{
+  transform: rotate(60deg);
+}
+#feedback{font-size: 1.8em;line-height: 1;}
+.chat{    position: absolute;
+    right: 50px;
+    top: 525px;
+}
+.predefined{font-weight:bold;color:black;}
