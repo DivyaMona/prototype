@@ -1,0 +1,138 @@
+package com.spring.dao;
+
+import java.sql.ResultSet;  
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;  
+import org.springframework.jdbc.core.BeanPropertyRowMapper;  
+import org.springframework.jdbc.core.JdbcTemplate;  
+import org.springframework.jdbc.core.RowMapper;
+
+import com.spring.CrudExample.CustomerBooking;
+import com.spring.CrudExample.Emp;
+import com.spring.CrudExample.Feedback;
+import com.spring.CrudExample.User;  
+ 
+  
+
+public class NewDao {
+	JdbcTemplate template;  
+	
+	public int register(User user) {
+		 String sql="insert into userdetails(bookingid,phonenum)values('"+user.getBookingId()+"','"+user.getPhoneNum()+"')";  
+			// String sql="insert into textbox(comments)values("+p.getComments()+")";
+		 System.out.println("Inside DAO---Registering User>>>>>>>>>>>>");
+		    return template.update(sql);  		
+	}  
+	
+	public CustomerBooking ifUserExists(User user) {
+		
+		/* String sql1 = "select * from users where username='" + login.getUsername() + "' and password='" + login.getPassword()
+		    + "'";*/
+	    String sql = "select * from customer_booking_details where booking_id='" + user.getBookingId() + "' and phonenum='" + user.getPhoneNum()
+		    + "'";
+	    List<CustomerBooking> cust = template.query(sql, new CustMapper());
+	    return cust.size() > 0 ? cust.get(0) : null;
+	    }
+	
+	
+	/*public CustomerBooking ifUserExists(String bookingId){  
+	    String sql="select * from customer_booking_details where booking_id=?";
+	    //String sql="select * from customer_booking_details where booking_id='TC44441234'";
+	    System.out.println("sql-->"+ sql);
+	    List<User> userList = new ArrayList<User>();  
+	    userList = template.query(sql, new RowMapper<CustomerBooking>);  
+	    return userList.get(0); 
+	    return template.queryForObject(sql, new Object[]{bookingId},new BeanPropertyRowMapper<CustomerBooking>(CustomerBooking.class));  
+	} */
+	
+	
+	public CustomerBooking getCustDetails(String bookingId){  
+	    String sql="select * from customer_booking_details where booking_id= ? ";
+	    //String sql="select * from customer_booking_details where booking_id='TC44441234'";
+	    System.out.println("sql-->"+ sql);
+	    List<CustomerBooking> cust = template.query(sql, new CustMapper());
+	    return cust.size() > 0 ? cust.get(0) : null;
+	}  
+	public void setTemplate(JdbcTemplate template) {  
+	    this.template = template;  
+	}  
+	
+	public int submitFeedback(CustomerBooking cust){  
+		String isPositive = "N";
+		String isNegative = "N";
+		if(cust.getFeedback_Rating() >= 4){
+			isPositive = "Y";
+		}else if(cust.getFeedback_Rating() <= 3){
+			isNegative = "Y";
+		}
+		System.out.println("cust.getCust_id() >>>" + cust.getCust_id());
+		System.out.println("cust.getBooking_id() >>>" + cust.getBooking_id());
+		
+		String sql = "insert into feedback VALUES(0,'Q'," + cust.getCust_id() + ",'"+cust.getBooking_id()+
+		"',"+"0," + cust.getFeedback_Rating() + ",'" + cust.getFeedback() + "',"+ "CURDATE()" +"," + "CURDATE()" +"," +
+		"0,'"+ isNegative + "'," + "'"+ isPositive + "',"+ "'N','NA','NA','Admin')";
+		   System.out.println("Sql-->"+sql);
+		    return template.update(sql);  
+		}  
+		
+	public int save(Emp p){  
+	   String sql="insert into Emp99(name,salary,designation)values('"+p.getName()+"',"+p.getSalary()+",'"+p.getDesignation()+"')";  
+		// String sql="insert into textbox(comments)values("+p.getComments()+")";
+	    return template.update(sql);  
+	}  
+	
+		public int update(Emp p){  
+	    String sql="update Emp99 set name='"+p.getName()+"', salary="+p.getSalary()+",designation='"+p.getDesignation()+"' where id="+p.getId()+"";  
+	    return template.update(sql);  
+	}  
+	public int delete(int id){  
+	    String sql="delete from Emp99 where id="+id+"";  
+	    return template.update(sql);  
+	}  
+	
+	public List<Emp> getEmployees(){  
+	    return template.query("select * from Emp99",new RowMapper<Emp>(){  
+	        public Emp mapRow(ResultSet rs, int row) throws SQLException {  
+	            Emp e=new Emp();  
+	            e.setId(rs.getInt(1));  
+	            e.setName(rs.getString(2));  
+	            e.setSalary(rs.getFloat(3));  
+	            e.setDesignation(rs.getString(4));  
+	            return e;  
+	        }  
+	    });  
+	}
+
+	public boolean insertFromScreen(User user) {
+		ArrayList<String> list = new ArrayList<String>();
+		 String sql="select * from userDetails where booking_id="+ user.getBookingId()+"";  
+		 System.out.println(sql);
+		 boolean isErrorflag = false;
+		 list.add(sql);
+		 System.out.println("sql >>>>>"+sql);
+		if( list.size() > 0){
+			isErrorflag=true;
+		}else{
+			
+			 String insertSql="insert into userdetails(bookingid,phonenum)values('"+user.getBookingId()+"','"+user.getPhoneNum()+"')";
+			  isErrorflag = false;
+		}
+		return isErrorflag;
+		
+	}
+	
+	
+}
+class CustMapper implements RowMapper<CustomerBooking>  {
+
+	
+	 public CustomerBooking mapRow(ResultSet rs, int arg1) throws SQLException {
+		 CustomerBooking cust = new CustomerBooking();
+		 cust.setBooking_id(rs.getString("booking_id"));
+		 cust.setPhonenum(rs.getString("phonenum"));	
+		 cust.setCust_id(rs.getInt("cust_id"));		   
+		 cust.setName(rs.getString("name"));
+
+		    return cust;
+		  }}
