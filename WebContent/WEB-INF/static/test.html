@@ -1,0 +1,28 @@
+<html>
+	<head>
+	<title>VoxMos-CHATBOT</title>
+	<link rel="stylesheet" href="./chatbox.css">
+	<style>
+	cf-chat-response.robot text>p{color:white; background:#5774b8;}
+cf-chat-response.user text>p {color:white; background:#27ad8e !important;}
+.conversational-form--enable-animation cf-input input, .conversational-form--enable-animation cf-input textarea{color:black; background:#27ad8e}
+	</style>
+	
+	</head>
+	<body>
+		<script type="text/javascript" src="https://cf-4053.kxcdn.com/conversational-form/0.9.6/conversational-form.min.js" crossorigin></script>
+		
+		<div id="chatbox">
+		<!-- <input id="username" name="username" type="hidden" value='${command.name}'/> -->
+		
+				<form id="my-form-element" cf-form action="https://hooks.zapier.com/hooks/catch/2670526/iv9cf9/" method="post">
+<input type="text" cf-questions="Hi!! Tell me you age" id="age" name="age">
+<input type="text" cf-questions="Tell me your first name?" id="firstname" name="fname">
+<input type="text" cf-questions="What is your last name?" id="lastname" name="lname">
+<input type="text" cf-questions="Hi {firstname} {lastname}, please tell me your email?" name="email">
+<input type="submit" class="btn btn-default">Thank you</input> 
+</form>
+		</div>
+	
+	</body>
+</html>
